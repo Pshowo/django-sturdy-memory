@@ -11,6 +11,7 @@
     {% endif %}
     <div>
         <form action="{% url 'login' %}" method="post">
+            <p><a href="{% url 'password_reset' %}">Zapomniałeś hasła?</a></p>
             {{form.as_p}}
             {% csrf_token %}
             <input type='hidden' name='next' value='{{ next }}'/>
