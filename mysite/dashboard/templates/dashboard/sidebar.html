@@ -12,6 +12,14 @@
       </li>
 
       <li class="nav-item">
+        {% url 'dashboard-projects' as url %}
+        <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-projects' %}">
+          <span data-feather="file"></span>
+          Projects
+        </a>
+      </li>
+
+      <li class="nav-item">
         {% url 'dashboard-errorslog' as url %}
         <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-errorslog' %}">
           <span data-feather="bar-chart-2"></span>
@@ -28,20 +36,8 @@
       </li>
 
       </li>
-      <li class="nav-item">
-        {% url 'dashboard-projects' as url %}
-        <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-projects' %}">
-          <span data-feather="file"></span>
-          Projects
-        </a>
-      </li>
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file"></span>
-          Reports
-        </a>
-      </li> -->
+
 
     </ul>
     <hr>

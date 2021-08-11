@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Client, Project, Software
 from django.views import View
-from .form  import NameForm
+from .forms  import NameForm
 from django.conf import settings
 
 SOFT = "-"
@@ -28,8 +28,7 @@ def clients(request):
     clients = Client.objects.all()
     print("\t ** Len clients", len(clients))
     context = {'clients': clients, "soft": SOFT}
-    print(settings.MY_HOST)
-    return render(request, 'dashboard/clients.html', context)
+    return render(request, 'dashboard/clients/clients_list.html', context)
 
 def client_detail(request, num):
     client = Client.objects.filter(id=num).first()
@@ -44,13 +43,13 @@ def structures(request):
 
 def projects(request):
     projects = Project.objects.all()
-    return render(request, 'dashboard/projects.html', {'projects':projects, 'active_menu': 'projects'})
+    return render(request, 'dashboard/projects/projects.html', {'projects':projects, 'active_menu': 'projects'})
 
 class NewClient(View):
 
     def get(self, request, *args, **kwargs):
        form = NameForm()
-       return render(request, 'versions/clients/new_client.html', {'form': form})
+       return render(request, 'dashboard/clients/new_client.html', {'form': form})
     
     def post(self, request, *args, **kwargs):
         form = NameForm(request.POST)
