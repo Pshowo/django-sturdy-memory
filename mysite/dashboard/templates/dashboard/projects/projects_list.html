@@ -15,10 +15,10 @@
         {% for project in projects %}
         <tr data-href='#' style='cursor: pointer;'>
           <td>{{ project.id }}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{ project.number }}</td>
+          <td>{{ project.client.country }}, {{project.client.city}}</td>
+          <td>{{ project.client.name }}</td>
+          <td>{{ project.software.name }}</td>
         </tr>
         {% endfor %}
       </tbody>

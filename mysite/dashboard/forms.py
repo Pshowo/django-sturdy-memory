@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client
+from .models import Client, Software
 
 class NameForm(forms.Form):
     clinet_name = forms.CharField(label='Client name', max_length=100)
@@ -13,6 +13,7 @@ class ProjectForm(forms.Form):
     project_num = forms.IntegerField()
     desc = forms.CharField(widget=forms.Textarea)
     client = forms.ModelChoiceField(queryset=Client.objects.all())
+    soft = forms.ModelChoiceField(queryset=Software.objects.all())
 
 class SoftwareForm(forms.Form):
     name = forms.CharField(label='Software name')

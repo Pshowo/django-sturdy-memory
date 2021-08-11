@@ -76,14 +76,15 @@ class NewProject(View):
        return render(request, 'dashboard/projects/projects_form.html', {'form': form})
     
     def post(self, request, *args, **kwargs):
-        form = NameForm(request.POST)
+        form = ProjectForm(request.POST)
 
         if form.is_valid():
             proj_name = form.cleaned_data['project_name']
             proj_num = form.cleaned_data['project_num']
             desc = form.cleaned_data['desc']
-            client = form.cleaned_data['']
-            new_proj = Project(name=proj_name, number=proj_num, description=desc)
+            client = form.cleaned_data['client']
+            soft = form.cleaned_data['soft']
+            new_proj = Project(name=proj_name, number=proj_num, description=desc, client=client, software=soft)
             new_proj.save()
         return redirect(projects)
 
