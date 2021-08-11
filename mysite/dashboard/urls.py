@@ -9,9 +9,9 @@ urlpatterns = [
     path('clients/<int:num>', views.client_detail, name='dashboard-client_detail'),
     # ex: /dashboard/clients/new_client
     path('clients/new_client/', views.NewClient.as_view(), name='dashboard-new_client'),
-    # ex: /dashboard/errors
-
-    path('errorslog/', views.errorslog, name='dashboard-errorslog'),
+    
+    # ex: /dashboard/resources
+    path('resources/', views.resources, name='dashboard-resources'),
     # ex: /dashboard/structures
 
     path('structures/', views.structures, name='dashboard-structures'),

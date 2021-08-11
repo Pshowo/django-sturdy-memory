@@ -1,7 +1,13 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
-
+      <li class="nav-item">
+        {% url 'dashboard-resources' as url %}
+        <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-resources' %}">
+          <span data-feather="bar-chart-2"></span>
+          Resources logs
+        </a>
+      </li>
       
       <li class="nav-item">
         {% url 'dashboard-clients' as url %}
@@ -24,14 +30,6 @@
         <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-projects' %}">
           <span data-feather="file"></span>
           Projects
-        </a>
-      </li>
-
-      <li class="nav-item">
-        {% url 'dashboard-errorslog' as url %}
-        <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-errorslog' %}">
-          <span data-feather="bar-chart-2"></span>
-          Error log
         </a>
       </li>
 

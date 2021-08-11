@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Client, Project, Software
+from .models import Client, Project, Software, Devices
 from django.views import View
 from .forms  import NameForm, ProjectForm, SoftwareForm
 from django.conf import settings
@@ -35,8 +35,10 @@ def client_detail(request, num):
     context = {"client": client, 'soft': SOFT}
     return render(request, 'dashboard/client_details.html', context)
 
-def errorslog(request):
-    return render(request, 'dashboard/errorslog.html')
+def resources(request):
+    devices = Devices.objects.all()
+    context = {"devices": devices}
+    return render(request, 'dashboard/resources/resources_list.html', context)
 
 def structures(request):
     return render(request, 'dashboard/structure.html')
