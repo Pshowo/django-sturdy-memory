@@ -21,5 +21,6 @@ urlpatterns = [
     # ex: /dashboard/projects/new
     path('projects/new/', views.NewProject.as_view(), name='dashboard-projects-new'),
 
-
+    path('software/', views.softwares, name='dashboard-softwares'),
+    path('software/new/', views.NewSoftware.as_view(), name='dashboard-softwares-new')
 ]

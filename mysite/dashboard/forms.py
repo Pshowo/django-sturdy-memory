@@ -13,3 +13,7 @@ class ProjectForm(forms.Form):
     project_num = forms.IntegerField()
     desc = forms.CharField(widget=forms.Textarea)
     client = forms.ModelChoiceField(queryset=Client.objects.all())
+
+class SoftwareForm(forms.Form):
+    name = forms.CharField(label='Software name')
+    desc = forms.CharField(widget=forms.Textarea)

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Client, Project, Software
 from django.views import View
-from .forms  import NameForm, ProjectForm
+from .forms  import NameForm, ProjectForm, SoftwareForm
 from django.conf import settings
 
 SOFT = "-"
@@ -43,7 +43,8 @@ def structures(request):
 
 
 def softwares(request):
-    return render(request, 'dashboard/structure.html')
+    softwares = Software.objects.all()
+    return render(request, 'dashboard/softwares/softwares_list.html', {'softwares': softwares, 'active_menu': 'softwares'})
 
 
 def projects(request):
@@ -85,3 +86,20 @@ class NewProject(View):
             new_proj = Project(name=proj_name, number=proj_num, description=desc)
             new_proj.save()
         return redirect(projects)
+
+
+class NewSoftware(View):
+
+    def get(self, request, *args, **kwargs):
+       form = SoftwareForm()
+       return render(request, 'dashboard/softwares/softwares_form.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = SoftwareForm(request.POST)
+
+        if form.is_valid():
+            soft_name = form.cleaned_data['name']
+            soft_desc = form.cleaned_data['desc']
+            new_software = Software(name=soft_name, description=soft_desc)
+            new_software.save()
+        return redirect(softwares)

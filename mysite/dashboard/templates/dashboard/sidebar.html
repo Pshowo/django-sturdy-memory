@@ -12,8 +12,8 @@
       </li>
 
       <li class="nav-item">
-        {% url 'dashboard-software' as url %}
-        <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-software' %}">
+        {% url 'dashboard-softwares' as url %}
+        <a class="nav-link {% if request.path == url %} active {% endif %}" href="{% url 'dashboard-softwares' %}">
           <span data-feather="tool"></span>
           Software
         </a>

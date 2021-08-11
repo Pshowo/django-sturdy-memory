@@ -18,6 +18,7 @@ class Client(models.Model):
 
 class Software(models.Model):
     name = models.CharField(max_length=150)
+    description = models.TextField(null=True)
 
     def __str__(self):
         return self.name
