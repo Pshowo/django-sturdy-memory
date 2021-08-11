@@ -23,7 +23,9 @@ class Software(models.Model):
         return self.name
 
 class Project(models.Model):
+    name = models.CharField(max_length=150)
     number = models.IntegerField()
+    description = models.TextField(null=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
 

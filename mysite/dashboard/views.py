@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Client, Project, Software
 from django.views import View
-from .forms  import NameForm
+from .forms  import NameForm, ProjectForm
 from django.conf import settings
 
 SOFT = "-"
@@ -41,9 +41,14 @@ def errorslog(request):
 def structures(request):
     return render(request, 'dashboard/structure.html')
 
+
+def softwares(request):
+    return render(request, 'dashboard/structure.html')
+
+
 def projects(request):
     projects = Project.objects.all()
-    return render(request, 'dashboard/projects/projects.html', {'projects':projects, 'active_menu': 'projects'})
+    return render(request, 'dashboard/projects/projects_list.html', {'projects': projects, 'active_menu': 'projects'})
 
 class NewClient(View):
 
@@ -62,3 +67,21 @@ class NewClient(View):
             new_client = Client(name=client_name, country=country, city=city, longitude=longitude, latitude=latitude)
             new_client.save()
         return redirect(clients)
+
+class NewProject(View):
+
+    def get(self, request, *args, **kwargs):
+       form = ProjectForm()
+       return render(request, 'dashboard/projects/projects_form.html', {'form': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = NameForm(request.POST)
+
+        if form.is_valid():
+            proj_name = form.cleaned_data['project_name']
+            proj_num = form.cleaned_data['project_num']
+            desc = form.cleaned_data['desc']
+            client = form.cleaned_data['']
+            new_proj = Project(name=proj_name, number=proj_num, description=desc)
+            new_proj.save()
+        return redirect(projects)

@@ -1,4 +1,5 @@
 from django import forms
+from .models import Client
 
 class NameForm(forms.Form):
     clinet_name = forms.CharField(label='Client name', max_length=100)
@@ -7,3 +8,8 @@ class NameForm(forms.Form):
     longitude = forms.DecimalField(max_digits=9, decimal_places=5, required=False)
     latitude = forms.DecimalField(max_digits=9, decimal_places=5, required=False)
 
+class ProjectForm(forms.Form):
+    project_name = forms.CharField(label="Project name", max_length=100)
+    project_num = forms.IntegerField()
+    desc = forms.CharField(widget=forms.Textarea)
+    client = forms.ModelChoiceField(queryset=Client.objects.all())
