@@ -5,20 +5,22 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Project id</th>
+          <th>Project name</th>
           <th>Location</th>
           <th>Client name</th>
           <th>Software name</th>
+          <th>Version</th>
         </tr>
       </thead>
       <tbody>
         {% for project in projects %}
-        <tr data-href='#' style='cursor: pointer;'>
+        <tr data-href='{{project.id}}' style='cursor: pointer;'>
           <td>{{ project.id }}</td>
-          <td>{{ project.number }}</td>
+          <td><a href='{{project.id}}'>{{project.name}} [{{ project.number }}]</a></td>
           <td>{{ project.client.country }}, {{project.client.city}}</td>
           <td>{{ project.client.name }}</td>
           <td>{{ project.software.name }}</td>
+          <td>{{ project.software_ver }}</td>
         </tr>
         {% endfor %}
       </tbody>

@@ -51,6 +51,12 @@ def projects(request):
     projects = Project.objects.all()
     return render(request, 'dashboard/projects/projects_list.html', {'projects': projects, 'active_menu': 'projects'})
 
+
+def project_detail(request, num):
+    project = Project.objects.filter(id=num).first()
+    return render(request, 'dashboard/projects/projects_details.html', {'project': project, 'active_menu': 'projects'})
+
+
 class NewClient(View):
 
     def get(self, request, *args, **kwargs):

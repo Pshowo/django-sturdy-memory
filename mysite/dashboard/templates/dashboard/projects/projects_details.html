@@ -1,14 +1,15 @@
 {% extends "dashboard/projects/projects.html" %}
 {% block projectcontent %}
 
-<div class='col-4'>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h2>Details</h2>
-    </div>
-    <div>
-      <h6>Title:</h6><p>asdkjaf</p>
-      <h6>Description:</h6><p>asldhaklfhlaksfhAFLAKSFHASLDKFHAKLJDSF</p>
-    </div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+  <h4 >Projects details: <b>{{ project.name }} {{project.number}} - {{ project.client.name}}</b></h4>
 </div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% include "dashboard/projects/cards/project_info.html"%}
+    {% include "dashboard/projects/cards/project_computer.html"%}
+    {% include "dashboard/projects/cards/project_devices.html"%}
+
+ </div> <hr>
+ {% include "dashboard/projects/cards/project_errors.html"%}
 
 {% endblock %}

@@ -18,8 +18,12 @@ urlpatterns = [
     # ex: /dashboard/projects
 
     path('projects/', views.projects, name='dashboard-projects'),
+    # ex: /dashboard/projects/101
+    path('projects/<int:num>', views.project_detail, name='dashboard-project-detail'),
+
     # ex: /dashboard/projects/new
     path('projects/new/', views.NewProject.as_view(), name='dashboard-projects-new'),
+    
 
     path('software/', views.softwares, name='dashboard-softwares'),
     path('software/new/', views.NewSoftware.as_view(), name='dashboard-softwares-new')
