@@ -29,6 +29,9 @@ class Project(models.Model):
     description = models.TextField(null=True)
     software = models.ForeignKey(Software, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    ram_total = models.DecimalField(max_digits=4, decimal_places=2, null=True)
+    token = models.CharField(max_length=255, null=True)
+    software_ver = models.CharField(max_length=11, null=True)
 
     def __str__(self):
         return str(self.number)
