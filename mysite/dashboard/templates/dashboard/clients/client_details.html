@@ -1,0 +1,71 @@
+{% extends "dashboard/index.html" %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h2">#{{client.id}} {{client.name}} - Program name / 0.0.0</h2>
+        <p id="client_id" data-id="{{client.id}}"></p>
+
+    </div>
+
+    <div id="#links">
+      <h2></h2>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- {% include "dashboard/details/detail_computer.html" %} -->
+      <div class="col">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Processor and Memory</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Actual value</h6>
+              <div class='row'>
+                <p class='col-2 pe-0'>CPU</p>
+                <h3 class="col-4 card-text ps-0" id="cpu_">- %</h3>
+                <p class='col-2 pe-0'>RAM</p>
+                <h3 class="col-4 card-text ps-0" id="ram_">- %</h3>
+              </div>
+              <span>The memory used and avaiable in system:<br> <b id="ram_used">current / total GB.</b></span>
+              <p class="card-text"><br>Processes which consumes the most resources:</p>
+              <ul>
+                <li>msedge</li>
+                <li>Code.exe</li>
+              </ul>
+            </div>
+        
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        
+          </div>
+        </div>
+
+      {% include "dashboard/details/detail_info.html" %}
+      {% include "dashboard/details/detail_devices.html" %}
+      
+      
+    </div> <hr>
+    {% include "dashboard/details/detail_error.html" %}
+
+
+</main>
+<script type="text/javascript">
+
+  setInterval(function(){
+    var client_id = document.querySelector('#client_id').dataset.id
+    //todo dodać do zapytania api id klienta  
+    fetch('http://127.0.0.1:80/dashboard/api/test/')
+    .then(response => response.json())
+    .then(data => {
+      var client_ = data.clients.find(client => client.id==client_id);
+      console.log($(`#client_id`))
+      console.log(client_)
+      $(`#cpu_`).html(`${client_.CPU} %`)
+      $(`#ram_`).html(`${client_.RAM_PER} %`)
+      $(`#ram_used`).html(`${client_.RAM_USE} / ${client_.RAM} GB.`)
+    })
+  }, 3000);
+
+</script>
+{% endblock %}

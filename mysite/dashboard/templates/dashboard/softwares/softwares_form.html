@@ -1,0 +1,17 @@
+{% extends "dashboard/softwares/softwares.html" %}
+{% load crispy_forms_filters %}
+{% block softwarecontent %}
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h2">Add a new software</h2>
+    </div>
+    
+    <div class='row'>
+        <form action="." method="post" novalidate class="col-8">
+          {{ form|crispy }}
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary mt-2" value="Submit">
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "dashboard/projects/projects.html" %}
+{% block projectcontent %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project name</th>
+          <th>Location</th>
+          <th>Client name</th>
+          <th>Software name</th>
+          <th>Version</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+        <tr data-href='{{project.id}}' style='cursor: pointer;'>
+          <td>{{ project.id }}</td>
+          <td><a href='{{project.id}}'>{{project.name}} [{{ project.number }}]</a></td>
+          <td>{{ project.client.country }}, {{project.client.city}}</td>
+          <td>{{ project.client.name }}</td>
+          <td>{{ project.software.name }}</td>
+          <td>{{ project.software_ver }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
