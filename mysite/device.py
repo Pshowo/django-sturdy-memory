@@ -23,3 +23,20 @@ while True:
     # print("Ram: ", str(round(ram_percent, 2)) + " %\n")
 
     time.sleep(3)
+
+
+"""
+import requests
+from requests.structures import CaseInsensitiveDict
+
+url = "https://reqbin.com/echo/get/json"
+
+headers = CaseInsensitiveDict()
+headers["Accept"] = "application/json"
+headers["Authorization"] = "Bearer 46d6a3d4-8926-4729-a225-de60cf31bca7"
+
+
+resp = requests.get(url, headers=headers)
+
+print(resp.status_code)
+"""

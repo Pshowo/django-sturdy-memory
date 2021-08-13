@@ -4,6 +4,7 @@ from .models import Client, Project, Software, Devices
 from django.views import View
 from .forms  import NameForm, ProjectForm, SoftwareForm
 from django.conf import settings
+import uuid
 
 SOFT = "-"
 COMP = {
@@ -22,6 +23,13 @@ COMP = {
 @login_required
 def dashboard(request):
     return render(request, "dashboard/main.html", {'section':"dashboard"})
+
+def gen_token():
+    new_token = uuid.uuid4()
+    if Project.objects.all().filter(token=new_token) > 0:
+        return gen_token()
+    else:
+        return new_token
 
 
 def clients(request):
@@ -67,6 +75,7 @@ class NewClient(View):
     
     def post(self, request, *args, **kwargs):
         form = NameForm(request.POST)
+        
         if form.is_valid():
             client_name = form.cleaned_data['clinet_name']
             country = form.cleaned_data['country']
@@ -85,14 +94,15 @@ class NewProject(View):
     
     def post(self, request, *args, **kwargs):
         form = ProjectForm(request.POST)
-
+        token = gen_token()
+    
         if form.is_valid():
             proj_name = form.cleaned_data['project_name']
             proj_num = form.cleaned_data['project_num']
             desc = form.cleaned_data['desc']
             client = form.cleaned_data['client']
             soft = form.cleaned_data['soft']
-            new_proj = Project(name=proj_name, number=proj_num, description=desc, client=client, software=soft)
+            new_proj = Project(name=proj_name, number=proj_num, description=desc, client=client, software=soft, token=token)
             new_proj.save()
         return redirect(projects)
 
@@ -112,3 +122,5 @@ class NewSoftware(View):
             new_software = Software(name=soft_name, description=soft_desc)
             new_software.save()
         return redirect(softwares)
+
+    
