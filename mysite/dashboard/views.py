@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Client, Project, Software, Devices
+from api.models import Device
 from django.views import View
 from .forms  import NameForm, ProjectForm, SoftwareForm
 from django.conf import settings
@@ -64,7 +65,8 @@ def projects(request):
 
 def project_detail(request, num):
     project = Project.objects.filter(id=num).first()
-    return render(request, 'dashboard/projects/projects_details.html', {'project': project, 'active_menu': 'projects'})
+    data = Device.objects.all().filter(proj_num=num)
+    return render(request, 'dashboard/projects/projects_details.html', {'project': project, 'active_menu': 'projects', 'data':data})
 
 
 class NewClient(View):

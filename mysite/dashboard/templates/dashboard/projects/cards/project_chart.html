@@ -1,0 +1,45 @@
+<div class='row'>
+    <p>Chart</p>
+    <canvas id="dataChart" width="200" height="160"></canvas>
+</div>
+<script>
+    var ctx = document.getElementById('dataChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [{% for item in data %}'{{item.date_added}}',{% endfor%}],
+            datasets: [
+                {
+                label: 'RAM Used [GB]',
+                data:[{% for item in data %}'{{item.ram_used}}',{% endfor%}],
+                fill: false,
+                pointStyle: "line",
+                borderColor: ['#3489eb',],
+                },
+                {
+                label: 'RAM %',
+                data:[{% for item in data %}'{{item.ram_percent}}',{% endfor%}],
+                fill: false,
+                pointStyle: "line",
+                borderColor: ['#a80505',],
+                },
+                {
+                label: 'CPU %',
+                data:[{% for item in data %}'{{item.cpu}}',{% endfor%}],
+                fill: false,
+                pointStyle: "line",
+                borderColor: ['rgba(255, 99, 132, 1)',],
+                },
+        
+        ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>

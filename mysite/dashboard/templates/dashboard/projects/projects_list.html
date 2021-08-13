@@ -16,7 +16,7 @@
         {% for project in projects %}
         <tr data-href='{{project.id}}' style='cursor: pointer;'>
           <td>{{ project.id }}</td>
-          <td><a href='{{project.id}}'>{{project.name}} [{{ project.number }}]</a></td>
+          <td><a href='{{project.number}}'>{{project.name}} [{{ project.number }}]</a></td>
           <td>{{ project.client.country }}, {{project.client.city}}</td>
           <td>{{ project.client.name }}</td>
           <td>{{ project.software.name }}</td>
