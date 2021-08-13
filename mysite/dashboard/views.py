@@ -66,6 +66,7 @@ def projects(request):
 def project_detail(request, num):
     project = Project.objects.filter(id=num).first()
     data = Device.objects.all().filter(proj_num=num)
+    print(data)
     return render(request, 'dashboard/projects/projects_details.html', {'project': project, 'active_menu': 'projects', 'data':data})
 
 

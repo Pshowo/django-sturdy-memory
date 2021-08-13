@@ -16,6 +16,7 @@
                 pointStyle: "line",
                 borderColor: ['#3489eb',],
                 },
+
                 {
                 label: 'RAM %',
                 data:[{% for item in data %}'{{item.ram_percent}}',{% endfor%}],
@@ -23,6 +24,7 @@
                 pointStyle: "line",
                 borderColor: ['#a80505',],
                 },
+                
                 {
                 label: 'CPU %',
                 data:[{% for item in data %}'{{item.cpu}}',{% endfor%}],
